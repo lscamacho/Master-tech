@@ -1,0 +1,5 @@
+DateTime==4.3
+numpy==1.18.1
+pkg-resources==0.0.0
+pytz==2019.3
+zope.interface==4.7.1

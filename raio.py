@@ -1,4 +1,4 @@
-import math
+"""import math
 
 def area_do_circulo(raio):
     
@@ -15,7 +15,7 @@ while i == 0:
     try:
         raio = float(input('Digite o raio do circulo: '))
     except ValueError:
-        print('Digite um FLOAT ANIMAL!!')
+        print('Digite um FLOAT SEU ANIMAL!!')
     else:
         i = 1
 
@@ -25,3 +25,6 @@ result_comprimento = comprimento_do_circulo(raio)
 print('A área do circulo é: {}'.format(result_area))
 print('O comprimento do circulo é: {}'.format(result_comprimento))
 
+"""
+nome = 'LUANA'
+print('{:=^50}'.format(nome))
