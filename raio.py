@@ -1,4 +1,4 @@
-"""import math
+import math
 
 def area_do_circulo(raio):
     
@@ -24,7 +24,3 @@ result_comprimento = comprimento_do_circulo(raio)
 
 print('A área do circulo é: {}'.format(result_area))
 print('O comprimento do circulo é: {}'.format(result_comprimento))
-
-"""
-nome = 'LUANA'
-print('{:=^50}'.format(nome))
