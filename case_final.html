@@ -1,0 +1,578 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 86,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: pandas in /home/user/Master-tech/env/lib/python3.6/site-packages\n",
+      "Requirement already satisfied: pytz>=2017.2 in /home/user/Master-tech/env/lib/python3.6/site-packages (from pandas)\n",
+      "Requirement already satisfied: numpy>=1.13.3 in /home/user/Master-tech/env/lib/python3.6/site-packages (from pandas)\n",
+      "Requirement already satisfied: python-dateutil>=2.6.1 in /home/user/Master-tech/env/lib/python3.6/site-packages (from pandas)\n",
+      "Requirement already satisfied: six>=1.5 in /home/user/Master-tech/env/lib/python3.6/site-packages (from python-dateutil>=2.6.1->pandas)\n",
+      "Collecting matplotlib.pyplot\n",
+      "\u001b[31mException:\n",
+      "Traceback (most recent call last):\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/basecommand.py\", line 215, in main\n",
+      "    status = self.run(options, args)\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/commands/install.py\", line 353, in run\n",
+      "    wb.build(autobuilding=True)\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/wheel.py\", line 749, in build\n",
+      "    self.requirement_set.prepare_files(self.finder)\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/req/req_set.py\", line 380, in prepare_files\n",
+      "    ignore_dependencies=self.ignore_dependencies))\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/req/req_set.py\", line 554, in _prepare_file\n",
+      "    require_hashes\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/req/req_install.py\", line 278, in populate_link\n",
+      "    self.link = finder.find_requirement(self, upgrade)\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/index.py\", line 465, in find_requirement\n",
+      "    all_candidates = self.find_all_candidates(req.name)\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/index.py\", line 423, in find_all_candidates\n",
+      "    for page in self._get_pages(url_locations, project_name):\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/index.py\", line 568, in _get_pages\n",
+      "    page = self._get_page(location)\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/index.py\", line 683, in _get_page\n",
+      "    return HTMLPage.get_page(link, session=self.session)\n",
+      "  File \"/home/user/Master-tech/env/lib/python3.6/site-packages/pip/index.py\", line 795, in get_page\n",
+      "    resp.raise_for_status()\n",
+      "  File \"/home/user/Master-tech/env/share/python-wheels/requests-2.18.4-py2.py3-none-any.whl/requests/models.py\", line 935, in raise_for_status\n",
+      "    raise HTTPError(http_error_msg, response=self)\n",
+      "requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://pypi.org/simple/matplotlib-pyplot/\u001b[0m\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install pandas\n",
+    "!pip install matplotlib.pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import altair as alt\n",
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_dataset = pd.read_csv(\"insurance2.csv\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 103,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>age</th>\n",
+       "      <th>sex</th>\n",
+       "      <th>bmi</th>\n",
+       "      <th>children</th>\n",
+       "      <th>smoker</th>\n",
+       "      <th>region</th>\n",
+       "      <th>charges</th>\n",
+       "      <th>insuranceclaim</th>\n",
+       "      <th>describe</th>\n",
+       "      <th>describe_sex</th>\n",
+       "      <th>desbribe_fumantes</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>27.900</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>16884.92400</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Sudoeste</td>\n",
+       "      <td>Feminino</td>\n",
+       "      <td>nao_fumante</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>33.770</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2</td>\n",
+       "      <td>1725.55230</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Sudeste</td>\n",
+       "      <td>Masculino</td>\n",
+       "      <td>nao_fumante</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>33.000</td>\n",
+       "      <td>3</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2</td>\n",
+       "      <td>4449.46200</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Sudeste</td>\n",
+       "      <td>Masculino</td>\n",
+       "      <td>nao_fumante</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>22.705</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>21984.47061</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Noroeste</td>\n",
+       "      <td>Masculino</td>\n",
+       "      <td>nao_fumante</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>28.880</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3866.85520</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Noroeste</td>\n",
+       "      <td>Masculino</td>\n",
+       "      <td>nao_fumante</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   age  sex     bmi  children  smoker  region      charges  insuranceclaim  \\\n",
+       "0    1    0  27.900         0       0       3  16884.92400               1   \n",
+       "1    1    1  33.770         1       0       2   1725.55230               1   \n",
+       "2    1    1  33.000         3       0       2   4449.46200               1   \n",
+       "3    1    1  22.705         0       0       1  21984.47061               1   \n",
+       "4    1    1  28.880         0       0       1   3866.85520               1   \n",
+       "\n",
+       "   describe describe_sex desbribe_fumantes  \n",
+       "0  Sudoeste     Feminino       nao_fumante  \n",
+       "1   Sudeste    Masculino       nao_fumante  \n",
+       "2   Sudeste    Masculino       nao_fumante  \n",
+       "3  Noroeste    Masculino       nao_fumante  \n",
+       "4  Noroeste    Masculino       nao_fumante  "
+      ]
+     },
+     "execution_count": 103,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_dataset.head()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(1338, 8)"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_dataset.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "39.20702541106129"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# MEDIA DE IDADE\n",
+    "df_media_idade = df_dataset['age'].mean()\n",
+    "df_media_idade"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1.0949177877429"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# MEDIA DE FILHOS\n",
+    "med_filho = df_dataset['children'].mean()\n",
+    "med_filho "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 81,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>describe</th>\n",
+       "      <th>age</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Sudeste</td>\n",
+       "      <td>364</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Noroeste</td>\n",
+       "      <td>325</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Sudoeste</td>\n",
+       "      <td>325</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Nordeste</td>\n",
+       "      <td>324</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   describe  age\n",
+       "2   Sudeste  364\n",
+       "1  Noroeste  325\n",
+       "3  Sudoeste  325\n",
+       "0  Nordeste  324"
+      ]
+     },
+     "execution_count": 81,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# QUANTIDADE DE SEGURADOS POR REGIÃO\n",
+    "qtd_por_regiao = df_dataset[['age','describe']].groupby('describe', as_index = False).count()\n",
+    "qtd_por_regiao = qtd_por_regiao.sort_values('age', ascending=False)\n",
+    "qtd_por_regiao"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 79,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_dataset['describe'] = df_dataset['region'].apply(lambda x: 'Nordeste' if x == 0 else('Noroeste' if x == 1 else ('Sudeste' if x == 2 else 'Sudoeste')))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 89,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "\n",
+       "<div id=\"altair-viz-61049de5f5b64208baac978f742c347c\"></div>\n",
+       "<script type=\"text/javascript\">\n",
+       "  (function(spec, embedOpt){\n",
+       "    const outputDiv = document.getElementById(\"altair-viz-61049de5f5b64208baac978f742c347c\");\n",
+       "    const paths = {\n",
+       "      \"vega\": \"https://cdn.jsdelivr.net/npm//vega@5?noext\",\n",
+       "      \"vega-lib\": \"https://cdn.jsdelivr.net/npm//vega-lib?noext\",\n",
+       "      \"vega-lite\": \"https://cdn.jsdelivr.net/npm//vega-lite@4.0.2?noext\",\n",
+       "      \"vega-embed\": \"https://cdn.jsdelivr.net/npm//vega-embed@6?noext\",\n",
+       "    };\n",
+       "\n",
+       "    function loadScript(lib) {\n",
+       "      return new Promise(function(resolve, reject) {\n",
+       "        var s = document.createElement('script');\n",
+       "        s.src = paths[lib];\n",
+       "        s.async = true;\n",
+       "        s.onload = () => resolve(paths[lib]);\n",
+       "        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);\n",
+       "        document.getElementsByTagName(\"head\")[0].appendChild(s);\n",
+       "      });\n",
+       "    }\n",
+       "\n",
+       "    function showError(err) {\n",
+       "      outputDiv.innerHTML = `<div class=\"error\" style=\"color:red;\">${err}</div>`;\n",
+       "      throw err;\n",
+       "    }\n",
+       "\n",
+       "    function displayChart(vegaEmbed) {\n",
+       "      vegaEmbed(outputDiv, spec, embedOpt)\n",
+       "        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));\n",
+       "    }\n",
+       "\n",
+       "    if(typeof define === \"function\" && define.amd) {\n",
+       "      requirejs.config({paths});\n",
+       "      require([\"vega-embed\"], displayChart, err => showError(`Error loading script: ${err.message}`));\n",
+       "    } else if (typeof vegaEmbed === \"function\") {\n",
+       "      displayChart(vegaEmbed);\n",
+       "    } else {\n",
+       "      loadScript(\"vega\")\n",
+       "        .then(() => loadScript(\"vega-lite\"))\n",
+       "        .then(() => loadScript(\"vega-embed\"))\n",
+       "        .catch(showError)\n",
+       "        .then(() => displayChart(vegaEmbed));\n",
+       "    }\n",
+       "  })({\"config\": {\"view\": {\"continuousWidth\": 400, \"continuousHeight\": 300}}, \"data\": {\"name\": \"data-674fb20af0e984bdc0f42a1c509701ab\"}, \"mark\": \"bar\", \"encoding\": {\"color\": {\"type\": \"nominal\", \"field\": \"describe\", \"legend\": null}, \"x\": {\"type\": \"quantitative\", \"field\": \"age\", \"title\": \"Quantidade de segurados\"}, \"y\": {\"type\": \"nominal\", \"field\": \"describe\", \"title\": \"Regiao\"}}, \"selection\": {\"selector006\": {\"type\": \"interval\", \"bind\": \"scales\", \"encodings\": [\"x\", \"y\"]}}, \"title\": \"Qtd de segurados por regiao\", \"$schema\": \"https://vega.github.io/schema/vega-lite/v4.0.2.json\", \"datasets\": {\"data-674fb20af0e984bdc0f42a1c509701ab\": [{\"describe\": \"Sudeste\", \"age\": 364}, {\"describe\": \"Noroeste\", \"age\": 325}, {\"describe\": \"Sudoeste\", \"age\": 325}, {\"describe\": \"Nordeste\", \"age\": 324}]}}, {\"mode\": \"vega-lite\"});\n",
+       "</script>"
+      ],
+      "text/plain": [
+       "alt.Chart(...)"
+      ]
+     },
+     "execution_count": 89,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "alt.Chart(qtd_por_regiao, title=\"Qtd de segurados por regiao\").mark_bar().encode(\n",
+    "    y = alt.X('describe', title='Regiao'),\n",
+    "    x = alt.Y('age', title='Quantidade de segurados'),\n",
+    "    color = alt.Color('describe', legend=None)\n",
+    ").interactive()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 90,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_dataset['describe_sex'] = df_dataset['sex'].apply(lambda x: 'Feminino' if x == 0 else 'Masculino')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "13270.422265141257"
+      ]
+     },
+     "execution_count": 96,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_media = df_dataset['charges'].mean()\n",
+    "df_media"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 112,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_dataset['describe_fumantes'] = df_dataset['smoker'].apply(lambda x: 'fumante' if x == 1 else 'nao_fumante')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 113,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>describe</th>\n",
+       "      <th>describe_fumantes</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Sudeste</td>\n",
+       "      <td>364</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Noroeste</td>\n",
+       "      <td>325</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Sudoeste</td>\n",
+       "      <td>325</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Nordeste</td>\n",
+       "      <td>324</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   describe  describe_fumantes\n",
+       "2   Sudeste                364\n",
+       "1  Noroeste                325\n",
+       "3  Sudoeste                325\n",
+       "0  Nordeste                324"
+      ]
+     },
+     "execution_count": 113,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "qtd_fumantes_por_regiao = df_dataset[['age','describe_fumantes']].groupby('describe', as_index = False).count()\n",
+    "qtd_fumantes_por_regiao = qtd_fumantes_por_regiao.sort_values('age', ascending=False)\n",
+    "qtd_fumantes_por_regiao"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
